@@ -62,7 +62,7 @@ long long FibonacciTask2(int k, int num, long long prev1, long long prev2) {
 // "Invalid input data" (без лапок).
 string Task1(int num) {
     stringstream functionOutput;
-    if (num < 1) {
+    if (num < 1) { 
         return "Error";
     }
     if (num > 40) {
@@ -71,7 +71,7 @@ string Task1(int num) {
     if (num == 1) {
         return "1";
     }
-    functionOutput << Task1(num - 1) << " " << FibonacciTask1(num);
+    functionOutput << Task1(num - 1) << " " << FibonacciTask1(num);// формує рядок з чисел Фібоначчі використовуючи рекурсивний підхід.
     return functionOutput.str();
 }
  
@@ -109,7 +109,7 @@ string Task2(int num) {
 
     long long prev1 = 0, prev2 = 1;
 
-    for (int i = 1; i <= num; ++i) {
+    for (int i = 1; i <= num; ++i) {// генерує послідовність чисел фібоначчі та формує рядок у якому числа відділені пробілами. 
         long long fib = FibonacciTask2(0, i, prev1, prev2);
         functionOutput << fib;
         if (i < num) {
@@ -156,7 +156,7 @@ int CalculationsTask3(string map[], int row, int col) {
         minPath = up;
     }
 
-    map[row][col] = '0';
+    map[row][col] = '0';// для знахоження мінімального короткого шляху в лабіринті.
     if (minPath == -1) {
         return -1;
     }
@@ -205,12 +205,12 @@ int CalculationsTask3(string map[], int row, int col) {
 // стіною, функція має повертати вивід
 // "The starting point is in the wall" (без лапок).
 string Task3(string textFile, int rowsCount, int colsCount, int startRow, int startCol) {
-    stringstream functionOutput;
+    stringstream functionOutput; // Якщо не вдалось відкрити файл то буде повертати.
     ifstream file(textFile);
     if (!file) {
         return "No such file or file is corrupted";
     }
-    char character;
+    char character; // перевірє числа які не мають бути до 40 якщо більше то повертає Wrong dimensions.
     int counter = 0;
     if (rowsCount <= 0 || colsCount <= 0) return "Wrong dimensions";
     while (file >> character)
@@ -220,7 +220,7 @@ string Task3(string textFile, int rowsCount, int colsCount, int startRow, int st
     if (counter != (rowsCount * colsCount)) return "Wrong dimensions";
     file.close();
 
-    file.open(textFile);
+    file.open(textFile); //якщо початкові кординати  поза межами лабіринту то буде повертати.
     string map[rowsCount];
     for (int i = 0; i < rowsCount; i++) {
         getline(file, map[i], '\n');
@@ -231,7 +231,7 @@ string Task3(string textFile, int rowsCount, int colsCount, int startRow, int st
     if (startCol < 0 || startCol >= colsCount) {
         return "The starting point is outside the maze";
     }
-    if (map[startRow][startCol * 2] == '1') {
+    if (map[startRow][startCol * 2] == '1') { //якщо спавн у стіні то повертає.
         return "The starting point is in the wall";
     }
     file.close();
