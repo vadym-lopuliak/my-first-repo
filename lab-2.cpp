@@ -15,7 +15,7 @@ long double CalculationsTask1(int num) {
     if (num == 0) {
         return 0; 
     } else {
-        return 1 / pow(num, 4) + CalculationsTask1(num - 1); 
+        return 1 / pow(num, 4) + CalculationsTask1(num - 1); //1 / pow(num, 4) додає поточний член ряду до суми.
     }
 }
 
@@ -29,18 +29,20 @@ long double CalculationsTask2(int num, int precision) {
         return (pow(num +2, 2) - 2)+ 1/(CalculationsTask2(num + 1, precision)); 
     }
 }
+//Результат — повертає значення ланцюгового дробу для заданої кількості членів.
 
 // Функція знаходження суми ряду для заданої кількості членів (кількості у 
 // кожній із сум). 
 // Функцію слід застосовувати у межах Завдання 3 (функція Task3).
-long double CalculationsTask3(int num) {
-    long double  a,b;
+long double CalculationsTask3(int num) { //приймає кількість членів ряду num.
+    long double  a,b; //для обчислення членів ряду для бази 2 і 3
     if (num == 0) {
         return 1/2. + 1/3.; 
     } 
-    a = (1/(pow(2, num * 2 + 1)) * pow(-1, num)) * 1/(num* 2+ 1);
+    a = (1/(pow(2, num * 2 + 1)) * pow(-1, num)) * 1/(num* 2+ 1)//обчислює знак і базовий член ряду для основи 2.
     b = (1/(pow(3, num * 2 + 1)) * pow(-1, num)) * 1/(num* 2+ 1);
     return a + b + CalculationsTask3 (num- 1); 
+    //Результат — повертає суму ряду для заданої кількості членів.
 }
 
 
@@ -62,10 +64,11 @@ string Task1(int precision) {
     if (precision <= 0) {
         return "Error"; 
     } else {
-        long double result = pow(CalculationsTask1(precision)* 90, 0.25);
+        long double result = pow(CalculationsTask1(precision)* 90, 0.25);//викликає рекурсивну функцію для обчислення суми ряду
+        //pow(..., 0.25)-обчислює четвертий корінь для знаходження п
         
-        functionOutput.precision(12);
-        functionOutput << result;
+        functionOutput.precision(12);//встановлює точність до 12 символів
+        functionOutput << result;// результат у рядковий потік
         
     }
      return functionOutput.str();
@@ -90,7 +93,7 @@ string Task2(int precision) {
     if (precision < 0) {
         return "Error"; 
     } else {
-        long double result = CalculationsTask2(0, precision);
+        long double result = CalculationsTask2(0, precision);// обчислює значення ланцюгового дробу для заданої кількості членів.
         
         functionOutput.precision(15);
         functionOutput << result;
@@ -118,10 +121,10 @@ string Task3(int precision) {
     if (precision < 0) {
         return "Error"; 
     } else {
-        long double result = CalculationsTask3(precision)* 4;
+        long double result = CalculationsTask3(precision)* 4;// множем результат для отримання п
         
         functionOutput.precision(15);
-        functionOutput << result;
+        functionOutput << result;// зберігання результату
         
     }
      return functionOutput.str();
