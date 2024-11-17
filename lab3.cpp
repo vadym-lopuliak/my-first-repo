@@ -28,7 +28,7 @@ string Task1 (int n) {
         return "Error";
     }
 
-    int* arr = new int[n];
+    int* arr = new int[n];//виділяєм память для динамічного масиву розміром n
 
     for (int i = 0; i < round ((double) n/2) ; i++) {
         arr[i] = i + 1;
@@ -70,13 +70,15 @@ string Task2 (int n) {
     }
     stringstream functionOutput;
     double *num = new double[n];
-    srand( (unsigned)time(0) ); 
+    srand( (unsigned)time(0) ); //генератор випадкових чисел
     for(int i = 0; i < n; i++){
         num[i] = (cos(rand())+ 1)* 5; 
     }
+    //вивід до сортування
      for(int i = 0; i< n; i++){
         functionOutput << num[i]<< ' '; 
     }
+    //сортування методом бульбашки
       int i, j;
     for (i = 0; i < n - 1; i++)
         for (j = 0; j < n - i - 1; j++)
@@ -85,6 +87,7 @@ string Task2 (int n) {
                 num[j]= num[j+ 1];
                 num[j+1] = temp;   
             }
+    //після сортування
     for(int i = 0; i< n; i++){
         functionOutput << num[i]<< ' '; 
     }
@@ -106,9 +109,10 @@ string Task3() {
     // Наприклад, коректним є запис
     // functionOutput << arr[i] << " ";
     stringstream functionOutput;
-    int *simple = new int[1000000];
+    int *simple = new int[1000000];// створеня масиву простих чисел
     int count = 0;
     int num = 2;  
+    //алгоритм пошуку простих чисел
     while (count < 1000000) {
         bool isSimple = true;
         for (int i = 0; i < count; i++) {
@@ -127,7 +131,8 @@ string Task3() {
         
         num++;
     }
-    functionOutput<< simple[999999];
+    functionOutput<< simple[999999];//Виведення мільйонного простого числа
+    //очищення
     delete[] simple;
     simple = nullptr;
 
@@ -164,12 +169,14 @@ string Task4 (string textFile, string keyFile) {
 
     ifstream file(textFile);
     ifstream key(keyFile);
+    //перевірка файлів
     if(!file || !key){
         return "Error"; 
     }
     int longFile = 0;
     int longKey = 0;
     char countChar;
+    //зчитування тексту та ключа
     while(file.get(countChar) ){
         x[longFile] = countChar;
         longFile++;  
@@ -182,6 +189,7 @@ string Task4 (string textFile, string keyFile) {
         }  
         
     }
+    //шифрування
     for(int i = 0; i < longFile; i++){
         y[i] = x[i]^k[i%longKey]; 
         if(y[i]< 32){
@@ -191,6 +199,7 @@ string Task4 (string textFile, string keyFile) {
             functionOutput << y[i]; 
         }
     }
+    //розшифрумання 
     functionOutput << endl; 
     for(int i = 0; i < longFile; i++ ){
         z[i] = y[i]^k[i%longKey];
@@ -198,7 +207,7 @@ string Task4 (string textFile, string keyFile) {
     }
     file.close();
     key.close();
-
+//очищення пам'яті
     delete[] x; x = nullptr;
     delete[] y; y = nullptr;
     delete[] z; z = nullptr;
