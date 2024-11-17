@@ -61,7 +61,7 @@ long double CalculationsTask3(int num) { //приймає кількість ч�
 // "Error" (без лапок).
 string Task1(int precision) {
     stringstream functionOutput;
-    if (precision <= 0) {
+    if (precision <= 0) {// нуль або від’ємне повертає
         return "Error"; 
     } else {
         long double result = pow(CalculationsTask1(precision)* 90, 0.25);//викликає рекурсивну функцію для обчислення суми ряду
