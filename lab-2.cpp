@@ -23,7 +23,7 @@ long double CalculationsTask1(int num) {
 // Функція знаходження значення ланцюгового дробу для заданої кількості членів. 
 // Функцію слід застосовувати у межах Завдання 2 (функція Task2).
 long double CalculationsTask2(int num, int precision) {
-    if (num == precision) {
+    if (num == precision) {//завершується і повертає результат для цього члена
         return (pow(num +2, 2) - 2); 
     } else {
         return (pow(num +2, 2) - 2)+ 1/(CalculationsTask2(num + 1, precision)); 
